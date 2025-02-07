@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attachment', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('card_id')->constrained()->onDelete('restrict')->onUpdate('cascade'); 
-            $table->string('file_name');
-            $table->text('file_path');
-            $table->string('file_type');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('title');
+            $table->text('description');
+            $table->enum('status', ['Open', 'In Progress', 'Done']);
+            $table->date('due_date');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attachment');
+        Schema::dropIfExists('cards');
     }
 };

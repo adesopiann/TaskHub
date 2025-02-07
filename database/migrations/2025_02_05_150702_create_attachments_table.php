@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lists', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('board_id')->constrained()->onDelete('restrict')->onUpdate('cascade');
-            $table->string('name');
-            $table->integer('position');
+            $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade')->onUpdate('cascade'); 
+            $table->string('file');
+            $table->text('file_path');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lists');
+        Schema::dropIfExists('attachment');
     }
 };

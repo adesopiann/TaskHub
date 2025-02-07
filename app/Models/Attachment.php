@@ -13,10 +13,9 @@ class Attachment extends Model
         'card_id',
         'file_name',
         'file_path',
-        'file_type'
     ];
 
-    public function card(): BelongsTo {
-        return $this->belongsTo(Card::class);
+    public function task(): BelongsTo {
+        return $this->belongsTo(Task::class);
     }
 }

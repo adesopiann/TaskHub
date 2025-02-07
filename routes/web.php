@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,13 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [DashboardController::class, 'index'])->middleware('auth')->name('index');
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    Route::post('/task', [TaskController::class, 'store'])->name('store');
+    Route::put('/task/{task}', [TaskController::class, 'update'])->name('update');
+    Route::delete('/task/{task}' , [TaskController::class, 'destroy'])->name('delete');
+
+    Route::post('/tasks/{task}/attachments', [AttachmentController::class, 'store'])->name('store.file');
+    Route::delete('/attachments/{attachment}', [AttachmentController::class, 'destroy'])->name('delete.file');
 });
 

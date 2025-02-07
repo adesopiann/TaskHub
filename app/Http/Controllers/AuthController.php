@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +15,7 @@ class AuthController extends Controller
         return view('auth.registration');
     }
 
-    public function register (Request $request): RedirectResponse {
+    public function register (Request $request) {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -27,10 +26,8 @@ class AuthController extends Controller
 
         $user = User::create($validatedData);
 
-        // dd($token);
-
         if ($user) {
-            return redirect("/")->withSuccess('Great! You have Successfully Registered!');
+            return redirect("/")->with('success', 'Great! You have Successfully Registered!');
         } else {
             return back()->with('fail', 'Something wrong!');
         }
