@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
+use App\Models\Task;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/task', [TaskController::class, 'store'])->name('store');
     Route::put('/task/{task}', [TaskController::class, 'update'])->name('update');
     Route::delete('/task/{task}' , [TaskController::class, 'destroy'])->name('delete');
+    Route::get('/task/{id}', [TaskController::class, 'show'])->name('show.id');
+    Route::get('/task/{id}/edit', [TaskController::class, 'edit']);
+    Route::put('/task/{id}', [TaskController::class, 'updateStatus'])->name("updateStatus");
 
     Route::post('/tasks/{task}/attachments', [AttachmentController::class, 'store'])->name('store.file');
     Route::delete('/attachments/{attachment}', [AttachmentController::class, 'destroy'])->name('delete.file');
+    Route::post('/tasks/{id}/update-status', [TaskController::class, 'updateStatus']);
+    Route::get('/tasks/{task}', [TaskController::class, 'show']);
 });
-

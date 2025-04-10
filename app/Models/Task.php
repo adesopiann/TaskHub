@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Card extends Model
+class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+
+        protected $fillable = [
         'user_id',
         'title',
         'description',
@@ -21,7 +23,7 @@ class Card extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function attachment(): HasMany {
-        return $this->hasMany(Attachment::class);
+    public function attachments(): HasMany {
+        return $this->hasMany(Attachment::class, 'task_id');
     }
 }

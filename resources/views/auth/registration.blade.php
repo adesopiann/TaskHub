@@ -1,4 +1,4 @@
-@extends('components.container')
+@extends('components.layouts.container')
 
 @section('main')
 <section class="flex justify-center items-center mt-[100px]">

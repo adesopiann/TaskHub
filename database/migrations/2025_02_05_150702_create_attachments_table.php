@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attachments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade')->onUpdate('cascade'); 
-            $table->string('file');
-            $table->text('file_path');
-            $table->timestamps();
-        });
+            Schema::create('attachments', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade')->onUpdate('cascade'); 
+                $table->string('file_name');
+                $table->text('file_path');
+                $table->timestamps();
+            });
     }
 
     /**

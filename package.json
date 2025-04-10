@@ -14,6 +14,8 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.0.3"
+        "@tailwindcss/vite": "^4.0.3",
+        "flowbite": "^3.1.2",
+        "tw-elements": "^2.0.0"
     }
 }
