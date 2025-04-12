@@ -1,11 +1,10 @@
-<div class="bg-white rounded-[10px] py-2 px-3 mt-3">
+<div class="bg-white rounded-[10px] py-2 px-3 mt-3 card-task" data-task-id="{{ $task->id }}">
     <div class="cursor-pointer openDetailModal" data-id="{{ $task->id }}">
       <div class="flex justify-between">
-          <h1 class="text-xl font-semibold text-dark" id='title'>{{ $task->title }}</h1>
-          
+          <h1 class="text-lg md:text-xl font-semibold text-dark" id='title'>{{ $task->title }}</h1>
       </div>
         <div class="mt-2 border-l-2 border-blue-400 px-2 rounded-[4px]">
-            <p class="line-clamp-3 text-[#31363F]" id="description">{{ $task->description }}</p>
+            <p class="line-clamp-3 text-sm md:text-base text-[#31363F]" id="description">{{ $task->description }}</p>
         </div>
     </div>
     <div class="mt-3 flex justify-between">
@@ -23,7 +22,7 @@
             @if (in_array($task->status, ['Open', 'In Progress']))
             <button class="text-blue-800 text-xs flex openEditModal" data-id="{{ $task->id }}">Edit </button>
             @endif
-           <button type="button" class="text-red-800 text-xs flex" id="openDeleteModal">Delete</button>
+           <button type="button" class="text-red-800 text-xs flex openDeleteModal">Delete</button>
         </div>
     </div>
 </div>

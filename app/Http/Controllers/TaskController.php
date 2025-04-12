@@ -45,7 +45,9 @@ class TaskController extends Controller
             ]);
         }
 
-        return redirect('/');
+            return redirect('/')
+            ->withInput()
+            ->with('showModalAddTask', true);
     }
 
 

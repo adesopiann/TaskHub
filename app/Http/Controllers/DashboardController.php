@@ -33,4 +33,12 @@ public function index() {
         $task = Task::findOrFail($id);
         return view('dashboard', compact('task'));
     }
+
+    public function landingPage() {
+        if (auth()->check()) {
+            return redirect('dashboard');
+        }
+
+    return view('landing-page');
+    }
 }

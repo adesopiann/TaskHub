@@ -1,12 +1,24 @@
 @extends('components.layouts.container')
 
 @section('main')
-    <section class="mt-[50px] mx-[100px] "> 
-        <button id="openModalAdd" class="bg-blue-500 text-white py-2 px-4 rounded mb-4">Add Task</button>
-        <div class="grid grid-cols-3 gap-x-6">
-            <x-shows-task :status="'Open'" :tasks="$tasks['Open'] ?? []" />
-            <x-shows-task :status="'In Progress'" :tasks="$tasks['In Progress'] ?? []" />
-            <x-shows-task :status="'Done'" :tasks="$tasks['Done'] ?? []" />
+    <div class="flex md:hidden justify-between mx-[20px] gap-x-6 mt-4">
+        <button id="showOpen" class="toggle-btn bg-blue-500 text-white text-sm md:text-base py-2 px-4 rounded border border-blue-500">Open</button>
+        <button id="showInProgress" class="toggle-btn bg-white text-blue-500 text-sm md:text-base py-2 px-4 rounded border border-blue-500">In Progress</button>
+        <button id="showDone" class="toggle-btn bg-white text-blue-500 text-sm md:text-base py-2 px-4 rounded border border-blue-500">Done</button>
+    </div>
+    <section class="mt-[50px] mx-[20px]  md:mx-[100px] "> 
+         <button id="openModalAdd" class="bg-blue-500 text-sm md:text-base text-white py-2 px-4 rounded mb-4">Add Task</button>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6">
+            <div id="openTasks" class="task-category hidden md:block">
+                <x-shows-task :status="'Open'" :tasks="$tasks['Open'] ?? []" />
+            </div>
+            <div id="inProgressTasks" class="task-category hidden md:block">
+                <x-shows-task :status="'In Progress'" :tasks="$tasks['In Progress'] ?? []" />
+            </div>
+            <div id="doneTasks" class="task-category hidden md:block">
+                <x-shows-task :status="'Done'" :tasks="$tasks['Done'] ?? []" />
+            </div>
         </div>
         
         <!-- Modal Add -->
@@ -34,6 +46,15 @@
         
     </section>
 @endsection
+
+@if ($errors->any())
+    <script>
+        window.onload = function () {
+            document.getElementById("addTaskModal")?.classList.remove("hidden");
+            document.getElementById("overlay")?.classList.remove("hidden");
+        }
+    </script>
+@endif
 
 @section('script')
     <script>

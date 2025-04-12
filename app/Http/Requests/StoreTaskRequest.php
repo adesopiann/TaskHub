@@ -26,7 +26,8 @@ class StoreTaskRequest extends FormRequest
             'description' => 'string|nullable',
             'status' => 'required|in:Open,In Progress,Done',
             'due_date' => 'date|nullable',
-            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx,csv,sql|max:2048',
+            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx,csv,sql,mp4,mov|max:15360',
+
         ];
     }
 
@@ -41,6 +42,7 @@ class StoreTaskRequest extends FormRequest
             'title.required' => 'Judul tugas wajib diisi.',
             'status.required' => 'Status tugas wajib diisi.',
             'due_date.date' => 'Tanggal due date harus valid.',
+            'attachment.max' => 'File maksimal 20MB.'
         ];
     }
 }

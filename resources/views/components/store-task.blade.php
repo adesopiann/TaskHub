@@ -1,6 +1,6 @@
 <div class="fixed z-50 inset-0  hidden" id="addTaskModal">
     <div class="flex justify-center items-center w-full h-full">
-        <div class="bg-white p-6 rounded-md w-1/3" id="modalContent">
+        <div class="bg-white p-6 rounded-md w-[80%] md:w-1/3" id="modalContent">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-lg font-semibold">Add New Task</h2>
                 <button id="closeAddModal" class="text-gray-500">&times;</button>
@@ -54,7 +54,7 @@
                 </div>  
 
                 <div class="mb-4">
-                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Add Task</button>
+                    <button type="submit" class="bg-blue-500 text-sm md:text-base text-white py-2 px-4 rounded">Add Task</button>
                 </div>
             </form>
         </div>
