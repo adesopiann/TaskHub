@@ -19,16 +19,16 @@ use App\Models\Task;
 
 
 Route::middleware(['guest'])->group(function () {
+    Route::get('/', [DashboardController::class, 'landingPage'])->name('landingPage');
     Route::get('/register', [AuthController::class, 'registerPage'])->name('registerPage');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::get('/login', [AuthController::class, 'loginPage'])->name('loginPage');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
-    Route::get('/home', [DashboardController::class, 'landingPage'])->name('landingPage');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
     Route::post('/task', [TaskController::class, 'store'])->name('store');
     Route::put('/task/{task}', [TaskController::class, 'update'])->name('update');

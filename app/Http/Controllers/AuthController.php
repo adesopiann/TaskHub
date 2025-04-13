@@ -27,11 +27,10 @@ class AuthController extends Controller
         $user = User::create($validatedData);
 
         if ($user) {
-            return redirect("/")->with('success', 'Great! You have Successfully Registered!');
+            return redirect("/login")->with('success', 'Great! You have Successfully Registered!');
         } else {
             return back()->with('fail', 'Something wrong!');
         }
-
     }
 
 
@@ -46,11 +45,22 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
+        $user = User::where('email', $credentials['email'])->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Email not found.',
+            ])->withInput();
         }
-        return back()->with('loginError',  'Login Failed');
+
+        if (!Auth::attempt($credentials)) {
+            return back()->withErrors([
+                'password' => 'Wrong password.',
+            ])->withInput();
+        }
+
+        $request->session()->regenerate();
+        return redirect()->intended('/dashboard');
     }
 
 
@@ -60,6 +70,6 @@ class AuthController extends Controller
         Auth::logout(); 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('/home');
+        return redirect('/');
     }
 }
