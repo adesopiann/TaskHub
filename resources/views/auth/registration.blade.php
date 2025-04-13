@@ -22,8 +22,20 @@
             </div>
             <div class="flex flex-col mb-4">
                 <label for="password" class="mb-2">Password</label>
-                <input type="password" name="password" id="password" class=" w-full rounded-[6px] p-1  shadow-md focus:ring-2 focus:ring-blue-400 border border-gray-300 focus:outline-none" required> 
+                <div class="flex gap-x-1">
+                    <input type="password" name="password" id="password" class="w-full rounded-[6px] p-1 shadow-md focus:ring-2 focus:ring-blue-400 border border-gray-300 focus:outline-none" required>
+                    <!-- <button type="button" onclick="togglePassword()" class=" text-gray-500 hover:text-gray-700">
+                        <i id="eye-icon" data-feather="eye" class="w-5 h-5"></i>
+                    </button>  -->
+                </div>
                 @error('password')<span class=" text-red-500 text-xs mt-1">{{ $message }}</span>@enderror
+                <ul id="password-rules" class="text-xs ms-6 mt-2 space-y-1 list-disc hidden">
+                    <li id="rule-length" class="text-red-500">Minimum 8 characters</li>
+                    <li id="rule-letters" class="text-red-500">Must contain letters</li>
+                    <li id="rule-mixed" class="text-red-500">Must contain both uppercase and lowercase letters</li>
+                    <li id="rule-numbers" class="text-red-500">Must contain numbers</li>
+                    <li id="rule-symbols" class="text-red-500">Must contain symbols</li>
+                </ul>
             </div>
             <div class="mb-4">
                 <h1 class="text-black/70 text-xs text-center">Already have account? <a href="{{ route('loginPage') }}" class="underline">Sign In</a></h1>

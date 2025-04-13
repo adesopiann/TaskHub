@@ -11,16 +11,19 @@
 
         <form action="{{ route('login') }}" method="post" class="">
             @csrf
-            <div class="flex flex-col mb-4">
-                <label for="email" class="mb-2">Email</label>
+            <div class="flex flex-col mb-4 gap-y-2">
+                <label for="email"">Email</label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}" class=" rounded-[6px] p-1 shadow-md  focus:ring-2 focus:ring-blue-400 border border-gray-300 focus:outline-none @error('email') is-invalid @enderror" autofocus required>
                 @error('email')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="text-xs text-red-500">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="flex flex-col mb-4">
-                <label for="password" class="mb-2">Password</label>
+            <div class="flex flex-col mb-4 gap-y-2">
+                <label for="password">Password</label>
                 <input type="password" name="password" id="password" class=" rounded-[6px] p-1  shadow-md focus:ring-2 focus:ring-blue-400 border border-gray-300 focus:outline-none" required>
+                @error('password')
+                    <div class="text-xs text-red-500">{{ $message }}</div>
+                @enderror
             </div>
 
             @if(session()->has('loginError'))

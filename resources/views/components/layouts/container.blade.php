@@ -252,6 +252,56 @@
         });
     });
 
+    // Password Validation
+    const passwordInput = document.getElementById('password');
+    const rulesList = document.getElementById('password-rules');
+
+    const ruleLength = document.getElementById('rule-length');
+    const ruleLetters = document.getElementById('rule-letters');
+    const ruleMixed = document.getElementById('rule-mixed');
+    const ruleNumbers = document.getElementById('rule-numbers');
+    const ruleSymbols = document.getElementById('rule-symbols');
+
+    // Show on focus
+    passwordInput.addEventListener('focus', () => {
+        rulesList.classList.remove('hidden');
+        rulesList.classList.add('block');
+    });
+
+    // Hide on blur
+    passwordInput.addEventListener('blur', () => {
+        rulesList.classList.remove('block');
+        rulesList.classList.add('hidden');
+    });
+
+    // Update on input
+    passwordInput.addEventListener('input', () => {
+        const value = passwordInput.value;
+
+        updateRule(ruleLength, value.length >= 8, 'Minimum 8 characters');
+        updateRule(ruleLetters, /[a-zA-Z]/.test(value), 'Must contain letters');
+        updateRule(ruleMixed, /[a-z]/.test(value) && /[A-Z]/.test(value), 'Must contain both uppercase and lowercase letters');
+        updateRule(ruleNumbers, /\d/.test(value), 'Must contain numbers');
+        updateRule(ruleSymbols, /[!@#$%^&*(),.?":{}|<>_\-+=~`[\]\\;]/.test(value), 'Must contain symbols');
+    });
+
+    function updateRule(element, condition, text) {
+        element.classList.remove(condition ? 'text-red-500' : 'text-green-500');
+        element.classList.add(condition ? 'text-green-500' : 'text-red-500');
+    }
+
+    // function togglePassword() {
+    //     const passwordInput = document.getElementById("password");
+    //     const eyeIcon = document.getElementById("eye-icon");
+
+    //     if (passwordInput.type === "password") {
+    //         passwordInput.type = "text";
+    //         eyeIcon.setAttribute("data-feather", "eye-off");
+    //     } else {
+    //         passwordInput.type = "password";
+    //         eyeIcon.setAttribute("data-feather", "eye");
+    //     }
+    // }
 
     </script>
     @yield('script')
