@@ -13,17 +13,9 @@ use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
-
-    public function index()
-    {
-        //
-    }
-
-
-
     public function store(StoreTaskRequest $request)
     {
-        // Validasi sudah otomatis berjalan karena StoreTaskRequest
+        // Validasi input otomatis terjadi melalui StoreTaskRequest
         $task = Task::create([
             'user_id' => auth()->id(),
             'title' => $request->title,
@@ -50,20 +42,22 @@ class TaskController extends Controller
             ->with('showModalAddTask', true);
     }
 
-
+    // Menampilkan tugas berdasarkan ID
     public function show($id)
     {
         $task = Task::find($id);
 
+        // Menangani jika tugas tidak ditemukan
         if (!$task) {
             return response()->json(['error' => 'Task not found'], 404);
         }
+
         return response()->json($task);
     }
 
    public function update(UpdateTaskRequest $request, Task $task)
     {
-        // Validasi sudah otomatis berjalan karena UpdateTaskRequest
+        // Validasi input otomatis melalui UpdateTaskRequest
         $task->update($request->validated());
 
         // Cek apakah ada file yang diunggah
@@ -71,6 +65,7 @@ class TaskController extends Controller
             $file = $request->file('attachment');
             $filePath = $file->store('attachments', 'public');
 
+            // Menyimpan informasi file baru di tabel attachments
             Attachment::create([
                 'task_id' => $task->id,
                 'file_name' => $file->getClientOriginalName(),
@@ -80,32 +75,37 @@ class TaskController extends Controller
 
         return redirect('/');
     }
-
     
-    public function updateStatus(Request $request, $id)
-    {
-        
-        dd($request->all()); 
-        
-        $task = Task::findOrFail($id);
-        $task->status = $request->status;
-        $task->save();
-        
-        return response()->json(['success' => true, 'message' => 'Status updated successfully']);
-    }
-    
+    // Menampilkan halaman edit untuk tugas tertentu
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        dd($task);
         return view('components.update-task', compact('task'));
     }
     
+    // Menghapus tugas
     public function destroy(Task $task)
     {
         $task->delete();
         if($task) {
             return redirect('/');
         }
+    }
+
+    // Menghapus attachment dari tugas
+    public function destroyAttachment(Task $task, Attachment $attachment)
+    {
+       // Memastikan file yang akan dihapus memang milik tugas ini
+        if ($attachment->task_id === $task->id) {
+            // Hapus file dari storage
+            Storage::delete('public/' . $attachment->file_path);
+
+            // Hapus record attachment dari database
+            $attachment->delete();
+
+            return redirect()->back()->with('success', 'Attachment has been deleted!');
+        }
+
+        return redirect()->back()->with('error', 'Attachment not found!');
     }
 }

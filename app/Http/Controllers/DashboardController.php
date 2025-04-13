@@ -10,31 +10,21 @@ use App\Models\Task;
 class DashboardController extends Controller
 {
 
-public function index() {
-   $tasks = Task::where('user_id', Auth::id())
-        ->get()
-        ->groupBy('status')
-        ->sortKeysUsing(function ($key) {
-            return ['Open' => 1, 'In Progress' => 2, 'Done' => 3][$key] ?? 4;
+    public function index() {
+        // Mengambil tugas yang dimiliki oleh pengguna yang sedang login dan mengelompokkan berdasarkan status
+        $tasks = Task::where('user_id', Auth::id())
+            ->get()
+            ->groupBy('status')
+            ->sortKeysUsing(function ($key) { // Menyortir status dengan urutan khusus
+                return ['Open' => 1, 'In Progress' => 2, 'Done' => 3][$key] ?? 4 ;
         });
 
-    $statusColors = [
-        'Open' => 'bg-blue-100',
-        'In Progress' => 'bg-yellow-100',
-        'Done' => 'bg-green-100',
-    ];
-
-    return view('dashboard', compact('tasks', 'statusColors'));
-}
-
-
-    public function edit($id)
-    {
-        $task = Task::findOrFail($id);
-        return view('dashboard', compact('task'));
+        return view('dashboard', compact('tasks'));
     }
 
+    // Menampilkan landing page jika pengguna belum login
     public function landingPage() {
+        // Memeriksa apakah pengguna sudah login
         if (auth()->check()) {
             return redirect('dashboard');
         }

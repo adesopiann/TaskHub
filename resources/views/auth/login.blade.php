@@ -9,32 +9,35 @@
             <p class="text-xs text-center text-black/70">Manage your work, with TaskHub.</p>
         </div>
 
+        <!-- Form Login  -->
         <form action="{{ route('login') }}" method="post" class="">
             @csrf
+
+            <!-- Input Email -->
             <div class="flex flex-col mb-4 gap-y-2">
                 <label for="email"">Email</label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}" class=" rounded-[6px] p-1 shadow-md  focus:ring-2 focus:ring-blue-400 border border-gray-300 focus:outline-none @error('email') is-invalid @enderror" autofocus required>
-                @error('email')
-                <div class="text-xs text-red-500">{{ $message }}</div>
-                @enderror
+                @error('email')<div class="text-xs text-red-500">{{ $message }}</div>@enderror
             </div>
+
+            <!-- Input Password -->
             <div class="flex flex-col mb-4 gap-y-2">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class=" rounded-[6px] p-1  shadow-md focus:ring-2 focus:ring-blue-400 border border-gray-300 focus:outline-none" required>
-                @error('password')
-                    <div class="text-xs text-red-500">{{ $message }}</div>
-                @enderror
+                @error('password')<div class="text-xs text-red-500">{{ $message }}</div>@enderror
             </div>
 
+            <!-- Error Login dari Session -->
             @if(session()->has('loginError'))
-                <div class="text-xs text-red-500">
-                    {{ session('loginError') }}
-                </div>
+                <div class="text-xs text-red-500">{{ session('loginError') }}</div>
             @endif
 
+            <!-- Link ke Halaman Registrasi -->
             <div class="mb-4">
                 <h1 class="text-black/70 text-xs text-center">Doesn't have account? <a href="{{ route('registerPage') }}" class="underline">Sign Up</a></h1>
             </div>
+
+            <!-- Tombol Submit -->
             <button type="submit" class="py-1 w-full bg-blue-500 hover:bg-blue-400 font-semibold text-[16px] text-center rounded-[10px] text-white ">Sign In</button>
         </form>
     </div>
