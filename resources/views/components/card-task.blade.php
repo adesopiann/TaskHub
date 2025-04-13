@@ -8,16 +8,26 @@
         </div>
     </div>
     <div class="mt-3 flex justify-between">
-        <div class="flex gap-x-4">
-                <p class="text-xs text-[#31363F] flex gap-x-1">
-                    <i data-feather="clock" class="size-14 mt-[2px]"></i> 
-                    @if($task->due_date)
-                        {{ \Carbon\Carbon::parse($task->due_date)->format('M d') }}
+      <div class="flex gap-x-4"> 
+            <p class="text-xs flex gap-x-1  py-[2px] px-[2px] rounded-sm shadow-sm
+                 @if($task->due_date)
+                    @if(\Carbon\Carbon::parse($task->due_date)->isPast())
+                        text-red-600 bg-red-100
                     @else
-                        <span class="">No Due Date</span>
+                        text-green-600 bg-green-100
                     @endif
-                </p>   
+                @else
+                    text-gray-600 bg-gray-100
+                @endif">
+                <i data-feather="clock" class="size-14 mt-[2px]"></i> 
+                @if($task->due_date)
+                    {{ \Carbon\Carbon::parse($task->due_date)->format('Y-m-d ') }}
+                @else
+                    <span>No Due Date</span>
+                @endif
+            </p>   
         </div>
+
         <div class="flex gap-x-4">
             @if (in_array($task->status, ['Open', 'In Progress']))
             <button class="text-blue-800 text-xs flex openEditModal" data-id="{{ $task->id }}">Edit </button>

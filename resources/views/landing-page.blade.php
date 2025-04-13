@@ -4,7 +4,7 @@
 <section class="mx-[20px] md:mx-[100px] mt-[60px] md:mt-[140px]">
     <div class="flex flex-col items-center justify-center">
         <h1 class="mx-[10px] md:mx-[220px] font-bold text-[32px] md:text-[64px] md:text-center leading-tight z-50">
-            Master Your Day with <span class="text-blue-500 text-[38px] md:text-[68px]">TaskHub</span> The Smarter Way to Organize Life.</span>
+            Master Your Day with <span class="text-blue-500 text-[38px] md:text-[68px]">TaskHub.</span> The Smarter Way to Organize Life.</span>
         </h1>
         <p class="mx-[10px] mt-[28px] md:mt-[28px] md:mx-[360px] md:text-center">Say goodbye to scattered notes and missed deadlines. TaskHub brings everything you need into one simple, powerful workspace. Plan your day, track your progress. With an intuitive interface and smart features, TaskHub makes productivity feel effortless. It's time to work smarter, not harder.</p>
 
