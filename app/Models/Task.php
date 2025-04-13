@@ -11,7 +11,8 @@ class Task extends Model
     use HasFactory;
 
 
-        protected $fillable = [
+    // Daftar atribut yang dapat diisi secara massal
+    protected $fillable = [
         'user_id',
         'title',
         'description',
@@ -19,10 +20,12 @@ class Task extends Model
         'due_date'
     ];
 
+    // Relasi: Task dimiliki oleh satu user
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
 
+    // Relasi: Task memiliki banyak attachment
     public function attachments(): HasMany {
         return $this->hasMany(Attachment::class, 'task_id');
     }

@@ -37,8 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/task/{id}/edit', [TaskController::class, 'edit']);
     Route::put('/task/{id}', [TaskController::class, 'updateStatus'])->name("updateStatus");
 
-    Route::post('/tasks/{task}/attachments', [AttachmentController::class, 'store'])->name('store.file');
-    Route::delete('/attachments/{attachment}', [AttachmentController::class, 'destroy'])->name('delete.file');
+    Route::delete('/task/{task}/attachments/{attachment}', [TaskController::class, 'destroyAttachment'])->name('delete.attachment');
     Route::post('/tasks/{id}/update-status', [TaskController::class, 'updateStatus']);
     Route::get('/tasks/{task}', [TaskController::class, 'show']);
 });

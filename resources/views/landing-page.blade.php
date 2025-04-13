@@ -11,8 +11,10 @@
         <a href="{{ route('registerPage') }}" class="bg-blue-500 text-lg w-full py-1 px-2  mt-[28px] rounded-md shadow-lg text-white font-semibold block md:w-fit">Let's Get Ready!</a>
         <a href="{{ route('loginPage') }}" class="mt-[10px] font-semibold text-lg py-1 px-2 w-full  bg-white text-blue-500 rounded-md shadow-lg block md:hidden">Already Have an Account?</a>
         
+        <!-- Gambar ilustrasi untuk tampilan desktop -->
        <img src="img/image2.png" class="rounded-t-lg border border-gray-200 mt-[28px] hidden md:block" alt="">
 
+       <!-- Gambar ilustrasi untuk tampilan mobile -->
        <img src="img/image-mobile.png" class="rounded-t-lg border border-gray-200 mt-[28px] md:hidden block" alt="">
     </div>
 </section>
