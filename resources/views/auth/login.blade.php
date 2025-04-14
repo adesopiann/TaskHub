@@ -2,7 +2,7 @@
 
 @section('main')
 <section class="flex justify-center items-center mt-[100px]">
-    <div class=" py-[20px] px-[25px] w-full md:w-[26%] mx-[20px] border border-gray-200 rounded-[10px] shadow-md ">
+    <div class=" py-[20px] px-[25px] w-full md:w-[50%] lg:w-[26%] mx-[20px] border border-gray-200 rounded-[10px] shadow-md ">
         <h1 class="text-xl font-bold text-blue-500 mb-8">TaskHub</h1>
         <div class="mb-14">
             <h1 class=" text-3xl font-semibold text-center text-dark mb-2">Welcome Back!</h1>
