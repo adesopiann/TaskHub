@@ -1,5 +1,5 @@
 <nav class="z-[999] navbar p-4 text-white flex justify-between items-center shadow-lg shadow-blue-500/30">
-    <div class="text-2xl font-bold text-blue-500">TaskHub</div>
+    <a href="{{ route('landingPage') }}" class="text-2xl font-bold text-blue-500">TaskHub</a>
 
     <!-- Menampilkan menu user setelah login -->
     @auth
