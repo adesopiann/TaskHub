@@ -295,4 +295,6 @@ document.addEventListener("DOMContentLoaded", function () {
             /[!@#$%^&*(),.?":{}|<>_\-+=~`[\]\\;]/.test(value)
         );
     });
+
+    
 });

@@ -62,16 +62,19 @@ class TaskController extends Controller
 
         // Cek apakah ada file yang diunggah
         if ($request->hasFile('attachment')) {
-            $file = $request->file('attachment');
-            $filePath = $file->store('attachments', 'public');
+        $file = $request->file('attachment');
+        $filePath = $file->store('attachments', 'public');
 
-            // Menyimpan informasi file baru di tabel attachments
-            Attachment::create([
-                'task_id' => $task->id,
-                'file_name' => $file->getClientOriginalName(),
-                'file_path' => $filePath
-            ]);
-        }
+        Attachment::create([
+            'task_id' => $task->id,
+            'file_name' => $file->getClientOriginalName(),
+            'file_path' => $filePath
+        ]);
+
+        Log::info('Attachment uploaded: ' . $filePath);
+    } else {
+        Log::info('No file uploaded.');
+    }
 
         return redirect('/');
     }

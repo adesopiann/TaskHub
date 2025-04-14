@@ -77,11 +77,12 @@
                                         {{ $attachment->file_name }}
                                     </a>
                                     <!-- Tombol untuk menghapus file -->
-                                    <form action="{{ route('delete.attachment', ['task' => $task->id, 'attachment' => $attachment->id]) }}" method="POST" class="inline-block ml-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-500 text-sm hover:underline">Delete</button>
-                                    </form>
+                                    <button
+                                        type="button"
+                                        onclick="document.getElementById('deleteAttachmentForm-{{ $attachment->id }}').submit();"
+                                        class="text-red-500 text-sm hover:underline">
+                                        Delete
+                                    </button>
                                 </li>
                             @endforeach
                         </ul>
@@ -90,7 +91,7 @@
 
                 <!-- Tombol submit untuk update -->
                 <div class="mb-4 mt-4">
-                    <button type="submit" class="bg-blue-500 text-sm md:text-base text-white py-2 px-4 rounded">Update Task</button>
+                    <button id="updateButton" type="submit" class="bg-blue-500 text-sm md:text-base text-white py-2 px-4 rounded">Update Task</button>
                 </div>
             </form>
         </div>
@@ -99,3 +100,11 @@
 
 <!-- Modal untuk preview file (gambar, video, dokumen, atau fallback) -->
 <x-file-modal />
+
+
+@foreach ($task->attachments as $attachment)
+    <form id="deleteAttachmentForm-{{ $attachment->id }}" action="{{ route('delete.attachment', ['task' => $task->id, 'attachment' => $attachment->id]) }}" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+@endforeach
