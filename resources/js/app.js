@@ -5,6 +5,50 @@ import feather from "feather-icons";
 document.addEventListener("DOMContentLoaded", function () {
     feather.replace();
 
+    // ===== Password Validation =====
+    const passwordInput = document.getElementById("password");
+    const rulesList = document.getElementById("password-rules");
+
+    const ruleLength = document.getElementById("rule-length");
+    const ruleLetters = document.getElementById("rule-letters");
+    const ruleMixed = document.getElementById("rule-mixed");
+    const ruleNumbers = document.getElementById("rule-numbers");
+    const ruleSymbols = document.getElementById("rule-symbols");
+
+    // Fungsi untuk memperbarui status aturan validasi dengan memberikan warna hijau (valid) atau merah (tidak valid)
+    function updateRule(element, condition) {
+        // Menambahkan warna hijau jika kondisi terpenuhi (valid), dan merah jika tidak (tidak valid)
+        element.classList.toggle("text-green-500", condition);
+        element.classList.toggle("text-red-500", !condition);
+    }
+
+    // Menampilkan aturan validasi ketika pengguna mengklik input password
+    passwordInput?.addEventListener("focus", () => {
+        rulesList?.classList.remove("hidden");
+        rulesList?.classList.add("block");
+    });
+
+    // Menyembunyikan aturan validasi ketika pengguna mengklik di luar input password
+    passwordInput?.addEventListener("blur", () => {
+        rulesList?.classList.remove("block");
+        rulesList?.classList.add("hidden");
+    });
+
+    // Memantau inputan pengguna dan memvalidasi password dengan aturan tertentu
+    passwordInput?.addEventListener("input", () => {
+        const value = passwordInput.value;
+
+        // Memperbarui status aturan dengan memeriksa kondisi password
+        updateRule(ruleLength, value.length >= 8);
+        updateRule(ruleLetters, /[a-zA-Z]/.test(value));
+        updateRule(ruleMixed, /[a-z]/.test(value) && /[A-Z]/.test(value));
+        updateRule(ruleNumbers, /\d/.test(value));
+        updateRule(
+            ruleSymbols,
+            /[!@#$%^&*(),.?":{}|<>_\-+=~`[\]\\;]/.test(value)
+        );
+    });
+
     //  ===== AddTask Modal =====
     const openAddModal = document.getElementById("openModalAdd");
     const addTaskModal = document.getElementById("addTaskModal");
@@ -253,48 +297,4 @@ document.addEventListener("DOMContentLoaded", function () {
     burgerBtn?.addEventListener("click", () => {
         userMenu?.classList.toggle("hidden");
     });
-
-    // ===== Password Validation =====
-    const passwordInput = document.getElementById("password");
-    const rulesList = document.getElementById("password-rules");
-
-    const ruleLength = document.getElementById("rule-length");
-    const ruleLetters = document.getElementById("rule-letters");
-    const ruleMixed = document.getElementById("rule-mixed");
-    const ruleNumbers = document.getElementById("rule-numbers");
-    const ruleSymbols = document.getElementById("rule-symbols");
-
-    // Fungsi untuk memperbarui status aturan validasi dengan memberikan warna hijau (valid) atau merah (tidak valid)
-    function updateRule(element, condition) {
-        // Menambahkan warna hijau jika kondisi terpenuhi (valid), dan merah jika tidak (tidak valid)
-        element.classList.toggle("text-green-500", condition);
-        element.classList.toggle("text-red-500", !condition);
-    }
-
-    // Menampilkan aturan validasi ketika pengguna mengklik input password
-    passwordInput?.addEventListener("focus", () => {
-        rulesList?.classList.replace("hidden", "block");
-    });
-
-    // Menyembunyikan aturan validasi ketika pengguna mengklik di luar input password
-    passwordInput?.addEventListener("blur", () => {
-        rulesList?.classList.replace("block", "hidden");
-    });
-
-    // Memantau inputan pengguna dan memvalidasi password dengan aturan tertentu
-    passwordInput?.addEventListener("input", () => {
-        const value = passwordInput.value;
-
-        // Memperbarui status aturan dengan memeriksa kondisi password
-        updateRule(ruleLength, value.length >= 8);
-        updateRule(ruleLetters, /[a-zA-Z]/.test(value));
-        updateRule(ruleMixed, /[a-z]/.test(value) && /[A-Z]/.test(value));
-        updateRule(ruleNumbers, /\d/.test(value));
-        updateRule(
-            ruleSymbols,
-            /[!@#$%^&*(),.?":{}|<>_\-+=~`[\]\\;]/.test(value)
-        );
-    });
-
-    
 });
