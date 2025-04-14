@@ -1,5 +1,5 @@
 <!-- Modal Detail Tugas: Menampilkan detail tugas seperti judul, tanggal jatuh tempo, deskripsi, dan lampiran -->
-<div class="fixed z-50 bg-white w-[90%] md:w-[40%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 rounded-[10px] hidden" id="detailModal-{{ $task->id }}">
+<div class="fixed z-50 bg-white w-[80%] lg:w-[40%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 rounded-[10px] hidden" id="detailModal-{{ $task->id }}">
     
     <!-- Judul tugas -->
     <div class="flex justify-between">

@@ -36,7 +36,7 @@
         </div>
 
         <!-- Tombol aksi: Edit dan Delete -->
-        <div class="flex gap-x-4">
+        <div class="flex lg:flex gap-x-4">
             @if (in_array($task->status, ['Open', 'In Progress'])) <!-- Hanya tampilkan tombol edit jika status tugas 'Open' atau 'In Progress' -->
             <button class="text-blue-500 text-xs flex openEditModal" data-id="{{ $task->id }}">Edit </button>
             @endif

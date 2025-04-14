@@ -1,9 +1,12 @@
-<!-- Modal untuk mengedit task-->
+<!-- 
+    Modal untuk mengedit task.
+    Modal ini disembunyikan secara default dengan class 'hidden' dan akan muncul saat user mengklik tombol tertentu.
+-->
 <div class="fixed z-50 inset-0 hidden editTaskModal" id="editTaskModal-{{ $task->id }}">
     <div class="flex justify-center items-center w-full h-full">
 
         <!-- Kontainer isi modal -->
-        <div class="bg-white p-6 rounded-md mx-[20px] md:w-1/3">
+        <div class="bg-white p-6 rounded-md mx-[20px] w-[80%] lg:w-1/3">
 
             <!-- Header modal -->
             <div class="flex justify-between items-center mb-4">

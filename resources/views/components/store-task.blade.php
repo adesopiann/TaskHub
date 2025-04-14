@@ -7,7 +7,7 @@
     <div class="flex justify-center items-center w-full h-full">
 
     <!-- Kontainer isi modal -->
-        <div class="bg-white p-6 rounded-md w-[80%] md:w-1/3" id="modalContent">
+        <div class="bg-white p-6 rounded-md w-[80%] lg:w-1/3" id="modalContent">
 
             <!-- Header modal -->
             <div class="flex justify-between items-center mb-4">
