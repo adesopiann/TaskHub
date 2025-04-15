@@ -48,12 +48,12 @@
 
                 <!--  Modal Delete Confirmation -->
                   <div id="deleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
-                    <div class="bg-white p-6 rounded-lg w-96">
+                    <div class="bg-white p-6 rounded-lg w-96 mx-[20px]">
                         <h2 class="text-lg font-semibold text-center">Are you sure you want to delete this task?</h2>
                         <div class="flex justify-center mt-4">
                             <!-- Form untuk menghapus tugas -->
                             <form id="deleteForm" action="{{ route('delete', $task->id) }}" method="POST">
-                                @csrf
+                                @csrf 
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-300 text-white py-2 px-4 rounded mr-4">Yes, Delete</button>
                             </form>
@@ -69,13 +69,13 @@
     </section>
 @endsection
 
-    <!-- Jika terjadi error validasi, tampilkan modal tambah tugas secara otomatis  -->
-    @if ($errors->any())
-        <script>
-            window.onload = function () {
-                document.getElementById("addTaskModal")?.classList.remove("hidden");
-                document.getElementById("overlay")?.classList.remove("hidden");
-            }
-        </script>
-    @endif
+<!-- Jika terjadi error validasi saat tambah tugas, tampilkan modal tambah tugas secara otomatis  -->
+@if ($errors->any())
+    <script>
+        window.onload = function () {
+            document.getElementById("addTaskModal")?.classList.remove("hidden");
+            document.getElementById("overlay")?.classList.remove("hidden");
+        }
+    </script>
+@endif
 

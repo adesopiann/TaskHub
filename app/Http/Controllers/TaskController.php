@@ -15,11 +15,14 @@ class TaskController extends Controller
 {
     public function store(StoreTaskRequest $request)
     {
+        // Validasi data
         $validated = $request->validated();
         $validated['user_id'] = auth()->id();
 
+        // Menyimpan data dari request ke database
         $task = Task::create($validated);
 
+        // Mengecek apakah ada file yang diupload atau tidak
         if ($request->hasFile('attachment')) {
             $file = $request->file('attachment');
             $filePath = $file->store('attachments', 'public');

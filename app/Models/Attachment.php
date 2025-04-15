@@ -9,7 +9,7 @@ class Attachment extends Model
 {
     use HasFactory;
 
-    // Daftar atribut yang dapat diisi secara massal (mass assignment)
+    // Daftar atribut yang dapat diisi 
     protected $fillable = [
         'task_id',
         'file_name',
