@@ -20,12 +20,12 @@ class Task extends Model
         'due_date'
     ];
 
-    // Relasi: Task dimiliki oleh satu user
+    // Relasi: Satu Task dimiliki oleh satu user
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
 
-    // Relasi: Task memiliki banyak attachment
+    // Relasi: Satu Task memiliki banyak attachment
     public function attachments(): HasMany {
         return $this->hasMany(Attachment::class, 'task_id');
     }

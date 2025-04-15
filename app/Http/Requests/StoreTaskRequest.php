@@ -39,10 +39,10 @@ class StoreTaskRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Judul tugas wajib diisi.',
-            'status.required' => 'Status tugas wajib diisi.',
-            'due_date.date' => 'Tanggal due date harus valid.',
-            'attachment.max' => 'File maksimal 20MB.'
+            'title.required' => 'The task title is required.',
+            'status.required' => 'The task status is required.',
+            'attachment.max' => 'The file size must not exceed 15MB.',
+            'attachment.mimes' => 'The selected file type is not supported.',
         ];
     }
 }
