@@ -46,7 +46,7 @@
                 <x-update-task :task="$task" />
 
 
-                <!--  Modal Delete -->
+                <!--  Modal Delete Confirmation -->
                   <div id="deleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
                     <div class="bg-white p-6 rounded-lg w-96">
                         <h2 class="text-lg font-semibold text-center">Are you sure you want to delete this task?</h2>
@@ -66,15 +66,6 @@
         
         <!-- Overlay -->
         <div id="overlay" class="fixed w-screen h-screen bg-gray-900 inset-0 bg-opacity-50 hidden"></div>
-
-        @foreach($tasks as $status => $taskGroup)
-            @foreach($taskGroup as $task)
-            
-            @endforeach
-        @endforeach
-
-        <!-- Modal Konfirmasi Penghapusan Tugas -->
-
     </section>
 @endsection
 
