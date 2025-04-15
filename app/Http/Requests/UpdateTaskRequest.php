@@ -26,7 +26,7 @@ class UpdateTaskRequest extends FormRequest
             'description' => 'string|nullable',
             'status' => 'required|in:Open,In Progress,Done',
             'due_date' => 'date|nullable',
-            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx,csv,sql|max:2048',
+            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx,csv,sql,mp4,mov|max:15360',
         ];
     }
 

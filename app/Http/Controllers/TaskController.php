@@ -15,21 +15,15 @@ class TaskController extends Controller
 {
     public function store(StoreTaskRequest $request)
     {
-        // Validasi input otomatis terjadi melalui StoreTaskRequest
-        $task = Task::create([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'description' => $request->description,
-            'status' => $request->status,
-            'due_date' => $request->due_date
-        ]);
+        $validated = $request->validated();
+        $validated['user_id'] = auth()->id();
 
-        // Cek apakah ada file yang diunggah
+        $task = Task::create($validated);
+
         if ($request->hasFile('attachment')) {
             $file = $request->file('attachment');
-            $filePath = $file->store('attachments', 'public'); // Simpan di storage/app/public/attachments
+            $filePath = $file->store('attachments', 'public');
 
-            // Simpan informasi file di tabel attachments
             Attachment::create([
                 'task_id' => $task->id,
                 'file_name' => $file->getClientOriginalName(),
@@ -37,10 +31,11 @@ class TaskController extends Controller
             ]);
         }
 
-            return redirect('/')
+        return redirect('/')
             ->withInput()
             ->with('showModalAddTask', true);
     }
+
 
     // Menampilkan tugas berdasarkan ID
     public function show($id)
@@ -70,11 +65,7 @@ class TaskController extends Controller
             'file_name' => $file->getClientOriginalName(),
             'file_path' => $filePath
         ]);
-
-        Log::info('Attachment uploaded: ' . $filePath);
-    } else {
-        Log::info('No file uploaded.');
-    }
+     }
 
         return redirect('/');
     }
